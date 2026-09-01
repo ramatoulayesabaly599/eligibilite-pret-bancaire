@@ -15,6 +15,8 @@ source("global.R")
 # ---- Chargement des pages (chacune dans un fichier separe) ----
 source("pages/simulation.R")
 source("pages/performance.R")
+source("pages/donnees.R")
+source("pages/assistant.R")
 source("pages/apropos.R")
 
 # ---- INTERFACE UTILISATEUR ----
@@ -27,37 +29,4 @@ ui <- dashboardPage(
     sidebarMenu(
       menuItem("Simulation Client", tabName = "simulation", icon = icon("user-check")),
       menuItem("Performance du modele", tabName = "performance", icon = icon("chart-line")),
-      menuItem("A propos", tabName = "apropos", icon = icon("info-circle"))
-    )
-  ),
-
-  dashboardBody(
-    useShinyjs(),
-    tags$head(
-      tags$script(src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"),
-      tags$style(HTML("
-        .result-box { padding: 25px; border-radius: 10px; text-align: center; font-size: 22px; font-weight: bold; margin-top: 20px; }
-        .approved { background-color: #d4edda; color: #155724; border: 2px solid #28a745; }
-        .refused { background-color: #f8d7da; color: #721c24; border: 2px solid #dc3545; }
-      "))
-    ),
-
-    # Chaque page (definie dans son propre fichier) est assemblee ici
-    tabItems(
-      simulation_ui,
-      performance_ui,
-      apropos_ui
-    )
-  )
-)
-
-# ---- LOGIQUE SERVEUR ----
-# Chaque page a sa propre fonction serveur, appelee ici
-server <- function(input, output, session) {
-  simulation_server(input, output, session)
-  performance_server(input, output, session)
-  apropos_server(input, output, session)
-}
-
-# ---- LANCEMENT DE L'APPLICATION ----
-shinyApp(ui = ui, server = server)
+      menuItem("Donnees",
