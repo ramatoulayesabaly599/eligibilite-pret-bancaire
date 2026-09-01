@@ -5,7 +5,7 @@
 # et son contenu est partage par toutes les pages de l'application.
 ####################################################################
 
-packages <- c("shiny", "shinydashboard", "randomForest", "dplyr", "shinyjs")
+packages <- c("shiny", "shinydashboard", "randomForest", "dplyr", "shinyjs", "DT")
 
 installed <- rownames(installed.packages())
 for (p in packages) {
@@ -17,6 +17,7 @@ library(shinydashboard)
 library(randomForest)
 library(dplyr)
 library(shinyjs)
+library(DT)
 
 # ---- Chargement et preparation des donnees ----
 # IMPORTANT : placez "credit_risk_dataset.csv" a la racine du projet,
